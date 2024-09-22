@@ -1,0 +1,5 @@
+- skewness, kurtosis and their types, interpretation, and calculation.
+- standard distributions: random variables(discrete, continuous), pmf, pdf, cdf, reliability.
+- introduction and properties without proof for binomial, chi-square, t, f distributions.
+- hypothesis testing -> one-sided, two-sided, critical region, p-value, confidence intervals.
+- Analysis of variance-> one-way, two-way analysis of variance.
