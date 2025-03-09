@@ -1,0 +1,6 @@
+digraph Association_Rules {
+	chips -> milk [label="sup=0.375, conf=0.75"]
+	milk -> chips [label="sup=0.375, conf=0.6"]
+	bread -> nutmeg [label="sup=0.375, conf=0.75"]
+	nutmeg -> bread [label="sup=0.375, conf=1.0"]
+}

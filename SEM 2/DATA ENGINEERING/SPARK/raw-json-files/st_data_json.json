@@ -1,0 +1,51 @@
+[
+    {
+      "student_id": 1,
+      "name": "John Doe",
+      "grade_level": "10",
+      "exams": [
+        { "subject": "Math", "score": 85 },
+        { "subject": "Science", "score": 78 }
+      ],
+      "status": "Active"
+    },
+    {
+      "student_id": 2,
+      "name": "Jane Smith",
+      "grade_level": "11",
+      "exams": [
+        { "subject": "Math", "score": 92 },
+        { "subject": "English", "score": 88 }
+      ],
+      "status": "Inactive"
+    },
+    {
+      "student_id": 3,
+      "name": "Alex Johnson",
+      "exams": [
+        { "subject": "History", "score": 74 },
+        { "subject": "Math", "score": 81 }
+      ],
+      "status": "Active"
+    },
+    {
+      "student_id": 4,
+      "name": "Emily Davis",
+      "grade_level": "12",
+      "exams": [
+        { "subject": "Physics", "score": 90 },
+        { "subject": "Chemistry", "score": 89 }
+      ],
+      "status": "Inactive"
+    },
+    {
+      "student_id": 5,
+      "name": "Michael Brown",
+      "exams": [
+        { "subject": "Biology", "score": 76 },
+        { "subject": "Math", "score": 83 }
+      ],
+      "status": "Active"
+    }
+  ]
+  
