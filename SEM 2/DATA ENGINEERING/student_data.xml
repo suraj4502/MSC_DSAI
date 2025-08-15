@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <Name>John</Name>
+        <Email>john@gmail.com</Email>
+        <RollNo>1</RollNo>
+        <Age>16</Age>
+    </student>
+    <student>
+        <Name>Pratap</Name>
+        <Email>pratap@gmail.com</Email>
+        <RollNo>2</RollNo>
+        <Age>15</Age>
+    </student>
+    <student>
+        <Name>Lydia</Name>
+        <Email>lydia@gmail.com</Email>
+        <RollNo>3</RollNo>
+        <Age>16</Age>
+    </student>
+    <student>
+        <Name>Subhash</Name>
+        <Email>shubash@gmail.com</Email>
+        <RollNo>4</RollNo>
+        <Age>17</Age>
+    </student>
+    <student>
+        <Name>Naved</Name>
+        <Email>naved@gmail.com</Email>
+        <RollNo>5</RollNo>
+        <Age>16</Age>
+    </student>
+</students>

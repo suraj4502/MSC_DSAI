@@ -1,0 +1,61 @@
+create table students (roll_no int, name string, course string, marks float) row format delimited fields terminated by ',';
+
+hadoop fs -mkdir msc
+
+hadoop fs -put st.txt /msc
+
+describe formatted students;
+
+load data inpath '/msc/st.txt' into table students;
+
+set hive.cli.print.header = true;
+
+
+
+## EXTERNAL
+CREATE EXTERNAL TABLE IF NOT EXISTS sample_table (
+  id INT,
+  name STRING,
+  age INT,
+  city STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/user/hive/external/sample_data'
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+## TEMPORARY
+create temporary table policy_details_temp ( id int,
+name string,
+type string,
+age_criteria int ,
+tenure int,
+maturity string)
+
+insert into policy_details_temp values (32, ‘abc’ , ‘h’ , 32 , 3 , ‘40%’);
+
+## PARTITIONED + external
+CREATE EXTERNAL TABLE emps_external_partitioned (
+    id INT, 
+    name STRING, 
+    age INT
+) 
+PARTITIONED BY (city STRING) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE 
+LOCATION '/msc/external_table_data' 
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+## bucketed
+CREATE TABLE employees_bucketed (
+    id INT,
+    name STRING,
+    age INT,
+    city STRING
+)
+CLUSTERED BY (id) INTO 4 BUCKETS
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
