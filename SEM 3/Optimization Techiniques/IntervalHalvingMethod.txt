@@ -1,0 +1,30 @@
+# Unconstrained optimization  Elimination Method 
+# Interval halving Method -  
+import math
+
+# Define the function you want to minimize
+f = lambda x (x - 2.5)2 + 3  # Minimum at x=2.5, f(x)=3
+
+def interval_halving(f, a, b, tol=1e-3)
+    k = 0
+    while (b - a)  tol
+        k += 1
+        mid = (a + b)  2
+        l = (a + mid)  2
+        r = (mid + b)  2
+
+        f_l, f_mid, f_r = f(l), f(mid), f(r)
+
+        # Elimination logic
+        if f_l  f_mid
+            b = mid
+        elif f_r  f_mid
+            a = mid
+        else
+            a, b = l, r
+
+        print(fIter {k} Interval=({a.4f}, {b.4f}))
+    return (a + b)  2
+
+x_opt = interval_halving(f, 0, 6)
+print(Interval Halving Optimum, x_opt, f(x)=, f(x_opt))

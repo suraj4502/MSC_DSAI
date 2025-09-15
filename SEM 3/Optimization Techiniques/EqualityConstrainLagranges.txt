@@ -1,0 +1,29 @@
+import sympy as sp
+x, y, lam = sp.symbols('x y lam')
+f = x**2 + y**2
+h = x + 2*y - 6
+L = f + lam*h
+eqs = [sp.diff(L, v) for v in [x, y]] + [h]
+sol = sp.solve(eqs, (x, y, lam), dict=True)
+solution = sol          # Get numerical solution
+print(solution)
+print(f.subs(solution))
+
+
+----
+import sympy as sp
+
+x, y, lam1, lam2 = sp.symbols('x y lam1 lam2')
+f = x**2 + y**2
+
+h1 = x + y - 4     # First constraint: x + y = 4
+h2 = x - y - 2     # Second constraint: x - y = 2
+
+L = f + lam1*h1 + lam2*h2
+eqs = [sp.diff(L, v) for v in [x, y]] + [h1, h2]
+
+sol = sp.solve(eqs, (x, y, lam1, lam2), dict=True)
+print("Solution:", sol)
+sol_dict = sol[0]
+opt_val = f.subs(sol_dict)
+print("Optimal value f(x,y)=", opt_val)

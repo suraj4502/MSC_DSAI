@@ -1,0 +1,57 @@
+# golden method
+import math
+def golden(f, a, b, tol= 1e-2):
+    phi = (1 + 5 ** 0.5)/2
+    print("PHI ::", phi)
+    
+    while b-a > tol:
+        c = b - (b-a) / phi
+        d = a + (b-a) / phi
+        
+        if f(c) < f(d):
+            b = d
+        else:
+            a = c
+            
+    return (a+b)/2
+
+f = lambda x: (x-3)**2 + 2
+
+print(golden(f, 0,6))
+
+
+
+# Steepest descent on a quadratic equation
+mport numpy as np
+
+# Corresponds to grad = A*x - B for f = (x-1)^2 + 4(y-2)^2
+
+A = np.diag([2.0, 8.0])
+B = np.array([2.0, 16.0])
+x = np.array([0.0, 0.0])
+
+for k in range(5):
+    g = A @ x - B
+    print("G ::", g )
+    
+    alpha = (g @ g)/ (g@(A@g))
+    print("ALPHA ::", alpha)
+    
+    x = x-alpha * g
+    print("x ::", x)
+    
+    print(f"\nstep {k} :: x = {x}")
+    
+
+# newton_minimize
+def newton_minimize(f1, f2, x0, iters = 5):
+    x = x0
+    for _ in range(iters):
+        x = x - f1(x)/ f2(x)
+    return x
+
+f1 = lambda x : 4 * x ** 3 - 9 * x ** 2
+f2 = lambda x : 12 * x ** 2 - 18 * x
+
+print(newton_minimize(f1, f2, 3))
+ 
