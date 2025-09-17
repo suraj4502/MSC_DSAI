@@ -1,0 +1,17 @@
+from gensim.models import Word2Vec
+
+sentences = [
+    ['the', 'cat', 'sat', 'on', 'the', 'mat'],
+    ['the', 'dog', 'sat', 'on', 'the', 'rug'],
+    ['the', 'cat', 'chased', 'the', 'mouse'],
+    ['the', 'dog', 'barked', 'at', 'the', 'cat']
+]
+
+model = Word2Vec(sentences, vector_size=50, window=3, min_count=1, sg=1)
+
+vector_cat = model.wv['cat']
+print("Vector for 'cat':\n", vector_cat)
+
+similar_to_cat = model.wv.most_similar('cat', topn=7)
+for word, score in similar_to_cat:
+    print(f"word: {word}, score: {score:.4f}")

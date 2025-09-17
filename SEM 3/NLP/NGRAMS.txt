@@ -1,0 +1,67 @@
+import pandas as pd
+import nltk
+from nltk.util import ngrams
+from nltk.corpus import reuters
+from nltk import trigrams
+from collections import defaultdict
+
+nltk.download("punkt")
+nltk.download("reuters")
+
+df = pd.DataFrame({
+    "word": ["apple", "banana", "cherry", "date"],
+    "POS": ["pronoun", "verb", "noun", "adverb"]
+})
+
+one_hot = pd.get_dummies(df["word"], prefix="token")
+print(one_hot)
+
+def generate_ngrams(tokens, n):
+    return [tokens[i:i+n] for i in range(len(tokens)-n+1)]
+
+sentence = "I love Python programming".split()
+print(generate_ngrams(sentence, 1))   # Unigrams
+print(generate_ngrams(sentence, 2))   # Bigrams
+print(generate_ngrams(sentence, 3))   # Trigrams
+
+
+words = [w.lower() for w in reuters.words() if w.isalpha()]
+tri_grams = list(trigrams(words))
+
+model = defaultdict(lambda: defaultdict(lambda: 0))
+for w1, w2, w3 in tri_grams:
+    model[(w1, w2)][w3] += 1
+# Calculate probabilities
+for w1_w2 in model:
+    total = float(sum(model[w1_w2].values()))
+    for w3 in model[w1_w2]:
+        model[w1_w2][w3] /= total
+
+
+def predict_next_word(w1, w2):
+    next_word_probs = model[w1, w2]
+    if next_word_probs:
+        return max(next_word_probs, key=next_word_probs.get)
+    return "No prediction available"
+
+print(predict_next_word("the", "market"))
+
+
+data = {
+    "id": [1, 2, 3],
+    "text": [
+        "I love natural language processing",
+        "Natural language processing is fun",
+        "I love deep learning"
+    ]
+}
+df = pd.DataFrame(data)
+
+def create_ngrams(text, n):
+    tokens = text.lower().split()
+    return list(ngrams(tokens, n))
+
+df["bigrams"] = df["text"].apply(lambda x: create_ngrams(x, 2))
+df["trigrams"] = df["text"].apply(lambda x: create_ngrams(x, 3))
+
+print(df[["text", "bigrams", "trigrams"]])

@@ -1,0 +1,50 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import string
+import pandas as pd
+
+# Download NLTK tokenizer package (run once)
+nltk.download('punkt')
+
+# Sample Corpus
+corpus = [
+    "Python is amazing and fun.",
+    "Python is not just fun but also powerful.",
+    "Learning Python is fun!",
+]
+
+# Preprocessing Function
+def preprocess(text):
+    # Lowercase
+    text = text.lower()
+    # Remove punctuation
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    # Tokenize into words
+    tokens = word_tokenize(text)
+    return tokens
+
+# Process the corpus
+processed_corpus = [preprocess(sentence) for sentence in corpus]
+
+# Build vocabulary (unique words across corpus)
+vocabulary = sorted(set(word for sentence in processed_corpus for word in sentence))
+print("Vocabulary:", vocabulary)
+print("Vocabulary size:", len(vocabulary))
+
+# Function to create BoW vector for a sentence
+def create_bow_vector(sentence, vocab):
+    vector = [0] * len(vocab)
+    for word in sentence:
+        if word in vocab:
+            idx = vocab.index(word)
+            vector[idx] += 1
+    return vector
+
+# Create BoW vectors for all sentences
+bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in processed_corpus]
+
+# Print BoW vectors
+print("Bag of Words Vectors:")
+for vector in bow_vectors:
+    print(vector)
